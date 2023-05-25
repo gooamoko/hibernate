@@ -4,14 +4,13 @@ import jakarta.persistence.EntityGraph;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.gooamoko.hibernate.entity.Group;
 import ru.gooamoko.hibernate.entity.Speciality;
-import ru.gooamoko.hibernate.entity.Student;
+import ru.gooamoko.hibernate.entity.Semester;
 import ru.gooamoko.hibernate.repository.GroupsRepository;
 import ru.gooamoko.hibernate.repository.SpecialitiesRepository;
-import ru.gooamoko.hibernate.repository.StudentsRepository;
+import ru.gooamoko.hibernate.repository.SemestersRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,14 +22,14 @@ public class DatabaseServiceImpl implements DatabaseService {
     private final EntityManager entityManager;
     private final SpecialitiesRepository specialitiesRepository;
     private final GroupsRepository groupsRepository;
-    private final StudentsRepository studentsRepository;
+    private final SemestersRepository semestersRepository;
 
     public DatabaseServiceImpl(EntityManager entityManager, SpecialitiesRepository specialitiesRepository,
-                               GroupsRepository groupsRepository, StudentsRepository studentsRepository) {
+                               GroupsRepository groupsRepository, SemestersRepository semestersRepository) {
         this.entityManager = entityManager;
         this.specialitiesRepository = specialitiesRepository;
         this.groupsRepository = groupsRepository;
-        this.studentsRepository = studentsRepository;
+        this.semestersRepository = semestersRepository;
     }
 
     @Override
@@ -58,13 +57,13 @@ public class DatabaseServiceImpl implements DatabaseService {
     }
 
     @Override
-    public Student saveStudent(Student student) {
-        return studentsRepository.save(student);
+    public Semester saveSemester(Semester semester) {
+        return semestersRepository.save(semester);
     }
 
     @Override
-    public List<Student> getBatchOfStudents(Group group, int batchSize) {
-        Page<Student> batch = studentsRepository.getStudentsBatchForGroup(group, PageRequest.of(0, batchSize));
+    public List<Semester> getSemesters(Group group, int count) {
+        Page<Semester> batch = semestersRepository.getSemestersBatchForGroup(group, PageRequest.of(0, count));
         return batch.getContent();
     }
 }

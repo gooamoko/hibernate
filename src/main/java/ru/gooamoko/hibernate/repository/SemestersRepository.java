@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import ru.gooamoko.hibernate.entity.Group;
-import ru.gooamoko.hibernate.entity.Student;
+import ru.gooamoko.hibernate.entity.Semester;
 
-public interface StudentsRepository extends JpaRepository<Student, Long> {
+public interface SemestersRepository extends JpaRepository<Semester, Long> {
 
-    @Query("select st from Student st where st.group = :grp")
-    Page<Student> getStudentsBatchForGroup(@Param("grp")Group group, Pageable pageRequest);
+    @Query("select sm from Semester sm where sm.group = :grp")
+    Page<Semester> getSemestersBatchForGroup(@Param("grp")Group group, Pageable pageRequest);
 }

@@ -2,7 +2,7 @@ package ru.gooamoko.hibernate.service;
 
 import ru.gooamoko.hibernate.entity.Group;
 import ru.gooamoko.hibernate.entity.Speciality;
-import ru.gooamoko.hibernate.entity.Student;
+import ru.gooamoko.hibernate.entity.Semester;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,9 +17,9 @@ public interface DatabaseService {
 
     Group saveGroup(Group group);
 
-    Student saveStudent(Student student);
+    Semester saveSemester(Semester semester);
 
     List<Group> getSpecialityGroups(Speciality speciality);
 
-    List<Student> getBatchOfStudents(Group group, int batchSize);
+    List<Semester> getSemesters(Group group, int count);
 }

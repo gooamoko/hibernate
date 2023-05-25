@@ -8,7 +8,7 @@ import java.util.List;
 @NamedEntityGraph(
         name = "groups-full",
         attributeNodes = {
-                @NamedAttributeNode("students")
+                @NamedAttributeNode("semesters")
         }
 )
 @Entity
@@ -31,7 +31,7 @@ public class Group {
     private LocalDateTime createTimestamp = LocalDateTime.now();
 
     @OneToMany(mappedBy = "group")
-    private List<Student> students;
+    private List<Semester> semesters;
 
     public Long getId() {
         return id;
@@ -65,11 +65,11 @@ public class Group {
         this.createTimestamp = createTimestamp;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public List<Semester> getSemesters() {
+        return semesters;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setSemesters(List<Semester> semesters) {
+        this.semesters = semesters;
     }
 }

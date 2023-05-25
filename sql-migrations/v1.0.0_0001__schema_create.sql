@@ -17,14 +17,13 @@ create table if not exists GROUPS (
     constraint GROUPS_SPECIALITIES_FK foreign key (GRP_SPC_ID) references SPECIALITIES (SPC_ID) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
---Студенты
-create table if not exists STUDENTS (
-    STD_ID bigserial,
-    STD_FIRST_NAME varchar(50) not null,
-    STD_MIDDLE_NAME varchar(50) not null,
-    STD_LAST_NAME varchar(50) not null,
-    STD_GRP_ID bigint not null,
-    STD_CREATE_TS timestamp not null default current_timestamp(),
-    constraint STUDENTS_PK primary key (STD_ID),
-    constraint STUDENTS_GROUPS_FK foreign key (STD_GRP_ID) references GROUPS (GRP_ID) ON UPDATE CASCADE ON DELETE CASCADE
+--Семестры
+create table if not exists SEMESTERS (
+    SEM_ID bigserial,
+    SEM_YEAR integer not null,
+    SEM_NUMBER integer not null,
+    SEM_GRP_ID bigint not null,
+    SEM_CREATE_TS timestamp not null default current_timestamp(),
+    constraint SEMESTERS_PK primary key (SEM_ID),
+    constraint SEMESTERS_GROUPS_FK foreign key (SEM_GRP_ID) references GROUPS (GRP_ID) ON UPDATE CASCADE ON DELETE CASCADE
 );

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import ru.gooamoko.hibernate.entity.Group;
 import ru.gooamoko.hibernate.entity.Speciality;
-import ru.gooamoko.hibernate.entity.Student;
+import ru.gooamoko.hibernate.entity.Semester;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,14 +36,13 @@ class DatabaseServiceImplTest {
             testGroup = databaseService.saveGroup(testGroup);
             assertNotNull(testGroup.getId());
 
-            for (int j = 0; j < 10; j++) {
-                Student testStudent = new Student();
-                testStudent.setGroup(testGroup);
-                testStudent.setFirstName("Иван" + j);
-                testStudent.setMiddleName("Иванович" + j);
-                testStudent.setLastName("Иванов" + j);
-                testStudent = databaseService.saveStudent(testStudent);
-                assertNotNull(testStudent.getId());
+            for (int j = 0; j < 3; j++) {
+                Semester testSemester = new Semester();
+                testSemester.setGroup(testGroup);
+                testSemester.setYear(2020 + i);
+                testSemester.setNumber(j);
+                testSemester = databaseService.saveSemester(testSemester);
+                assertNotNull(testSemester.getId());
             }
         }
 
@@ -61,9 +60,9 @@ class DatabaseServiceImplTest {
         assertEquals(3, specialityGroups.size());
 
         Group group = specialityGroups.get(0);
-        int batchSize = 5;
-        List<Student> students = databaseService.getBatchOfStudents(group, batchSize);
-        assertNotNull(students);
-        assertEquals(batchSize, students.size());
+        int count = 1;
+        List<Semester> semesters = databaseService.getSemesters(group, count);
+        assertNotNull(semesters);
+        assertEquals(count, semesters.size());
     }
 }

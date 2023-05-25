@@ -8,13 +8,13 @@ import java.util.List;
 @NamedEntityGraph(
         name = "specialities-with-groups",
         attributeNodes = {
-                @NamedAttributeNode(value = "groups", subgraph = "groups-with-students")
+                @NamedAttributeNode(value = "groups", subgraph = "groups-with-semesters")
         },
         subgraphs = {
                 @NamedSubgraph(
-                        name = "groups-with-students",
+                        name = "groups-with-semesters",
                 attributeNodes = {
-                                @NamedAttributeNode("students")
+                                @NamedAttributeNode("semesters")
                 })
         }
 )
