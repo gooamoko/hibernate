@@ -1,8 +1,8 @@
-package ru.gooamoko.hibernate.service;
+package ru.gooamoko.hibernate.example1.service;
 
-import ru.gooamoko.hibernate.entity.Group;
-import ru.gooamoko.hibernate.entity.Speciality;
-import ru.gooamoko.hibernate.entity.Semester;
+import ru.gooamoko.hibernate.example1.entity.Group;
+import ru.gooamoko.hibernate.example1.entity.Semester;
+import ru.gooamoko.hibernate.example1.entity.Speciality;
 
 import java.util.List;
 import java.util.Optional;

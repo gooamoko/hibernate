@@ -1,11 +1,11 @@
-package ru.gooamoko.hibernate.repository;
+package ru.gooamoko.hibernate.example1.repository;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import ru.gooamoko.hibernate.entity.Group;
-import ru.gooamoko.hibernate.entity.Speciality;
+import ru.gooamoko.hibernate.example1.entity.Group;
+import ru.gooamoko.hibernate.example1.entity.Speciality;
 
 import java.util.List;
 

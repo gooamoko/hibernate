@@ -1,4 +1,4 @@
-package ru.gooamoko.hibernate.entity;
+package ru.gooamoko.hibernate.example1.entity;
 
 import jakarta.persistence.*;
 

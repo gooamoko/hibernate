@@ -1,16 +1,16 @@
-package ru.gooamoko.hibernate.service;
+package ru.gooamoko.hibernate.example1.service;
 
 import jakarta.persistence.EntityGraph;
 import jakarta.persistence.EntityManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import ru.gooamoko.hibernate.entity.Group;
-import ru.gooamoko.hibernate.entity.Speciality;
-import ru.gooamoko.hibernate.entity.Semester;
-import ru.gooamoko.hibernate.repository.GroupsRepository;
-import ru.gooamoko.hibernate.repository.SpecialitiesRepository;
-import ru.gooamoko.hibernate.repository.SemestersRepository;
+import ru.gooamoko.hibernate.example1.entity.Group;
+import ru.gooamoko.hibernate.example1.entity.Semester;
+import ru.gooamoko.hibernate.example1.entity.Speciality;
+import ru.gooamoko.hibernate.example1.repository.GroupsRepository;
+import ru.gooamoko.hibernate.example1.repository.SemestersRepository;
+import ru.gooamoko.hibernate.example1.repository.SpecialitiesRepository;
 
 import java.util.HashMap;
 import java.util.List;
