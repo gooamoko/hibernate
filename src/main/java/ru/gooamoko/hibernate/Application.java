@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {
 		"ru.gooamoko.hibernate.example1.repository",
 		"ru.gooamoko.hibernate.example2.repository",
-		"ru.gooamoko.hibernate.example3.repository"
+		"ru.gooamoko.hibernate.example3.repository",
+		"ru.gooamoko.hibernate.example4.repository"
 })
 public class Application {
 
