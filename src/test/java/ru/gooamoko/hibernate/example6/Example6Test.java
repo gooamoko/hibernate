@@ -13,6 +13,7 @@ import ru.gooamoko.hibernate.example6.entity.WorkerEntity;
 import ru.gooamoko.hibernate.example6.repository.WorkersRepository;
 
 import java.time.LocalDateTime;
+import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,6 +32,7 @@ public class Example6Test {
     public void setup() {
         // Добавим данные (10 записей)
         addPerson("Иван", "Иванович", "Иванов", LocalDateTime.of(1985, 2, 12, 12, 0));
+        addPerson("Сергей", "Иванович", "Иванов", LocalDateTime.of(1984, 7, 12, 15, 0));
         addPerson("Петр", "Иванович", "Тищенко", LocalDateTime.of(1985, 2, 1, 10, 0));
         addPerson("Василий", "Сергеевич", "Пупкин", LocalDateTime.of(1984, 12, 30, 8, 12));
         addPerson("Антуан", "Иванович", "Селианов", LocalDateTime.of(1983, 6, 20, 15, 54));
@@ -61,6 +63,21 @@ public class Example6Test {
     public void testSelectPageSortByLastName() {
         int pageSize = 5; // Количество записей
         Pageable pageRequest = PageRequest.of(0, pageSize, Sort.by(Sort.Direction.ASC, "lastName"));
+        Page<WorkerEntity> entities = repository.findAll(pageRequest);
+        List<WorkerEntity> workers = entities.toList();
+        assertNotNull(workers);
+        assertEquals(pageSize, workers.size());
+        assertEquals("Гок", workers.get(0).getLastName());
+    }
+
+    @Test
+    public void testSelectPageSortByLastAndFirstName() {
+        int pageSize = 5; // Количество записей
+        List<Sort.Order> orders = new LinkedList<>();
+        orders.add(Sort.Order.asc("lastName"));
+        orders.add(Sort.Order.desc("firstName"));
+
+        Pageable pageRequest = PageRequest.of(0, pageSize, Sort.by(orders));
         Page<WorkerEntity> entities = repository.findAll(pageRequest);
         List<WorkerEntity> workers = entities.toList();
         assertNotNull(workers);
