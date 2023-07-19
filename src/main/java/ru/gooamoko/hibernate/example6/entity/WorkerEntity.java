@@ -23,6 +23,9 @@ public class WorkerEntity {
     @Column(name = "last_name", nullable = false, length = 100)
     private String lastName;
 
+    @Column(name = "salary", nullable = false)
+    private int salary;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "birth_date", nullable = false)
     private LocalDateTime birthDate;
@@ -57,6 +60,14 @@ public class WorkerEntity {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
     }
 
     public LocalDateTime getBirthDate() {

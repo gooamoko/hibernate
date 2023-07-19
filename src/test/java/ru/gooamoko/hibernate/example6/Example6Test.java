@@ -30,7 +30,7 @@ public class Example6Test {
 
     @BeforeEach
     public void setup() {
-        // Добавим данные (10 записей)
+        // Добавим данные (11 записей)
         addPerson("Иван", "Иванович", "Иванов", LocalDateTime.of(1985, 2, 12, 12, 0));
         addPerson("Сергей", "Иванович", "Иванов", LocalDateTime.of(1984, 7, 12, 15, 0));
         addPerson("Петр", "Иванович", "Тищенко", LocalDateTime.of(1985, 2, 1, 10, 0));
@@ -57,6 +57,14 @@ public class Example6Test {
         Page<WorkerEntity> entities = repository.findAll(pageRequest);
         assertNotNull(entities);
         assertEquals(pageSize, entities.stream().count());
+    }
+
+    @Test
+    public void testSelectSummary() {
+        Summary summary = repository.getWorkersSummary();
+        assertNotNull(summary);
+        assertEquals(11, summary.getRecordsCount());
+        assertEquals(715, summary.getSalarySum());
     }
 
     @Test
@@ -105,6 +113,7 @@ public class Example6Test {
         entity.setMiddleName(middleName);
         entity.setLastName(lastName);
         entity.setBirthDate(birthDate);
+        entity.setSalary(65);
 
         repository.save(entity);
     }
