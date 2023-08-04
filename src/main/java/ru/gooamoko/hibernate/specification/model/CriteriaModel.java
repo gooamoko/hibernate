@@ -1,4 +1,4 @@
-package ru.gooamoko.hibernate.example6.model;
+package ru.gooamoko.hibernate.specification.model;
 
 /**
  * Класс, который представляет собой модель условия для фильтра.
@@ -6,9 +6,9 @@ package ru.gooamoko.hibernate.example6.model;
 public class CriteriaModel {
     private String field;
     private Operation operation;
-    private String value;
+    private Object value;
 
-    public CriteriaModel(String field, Operation operation, String value) {
+    public CriteriaModel(String field, Operation operation, Object value) {
         this.field = field;
         this.operation = operation;
         this.value = value;
@@ -30,7 +30,7 @@ public class CriteriaModel {
         this.operation = operation;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 

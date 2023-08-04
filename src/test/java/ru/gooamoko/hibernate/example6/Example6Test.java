@@ -10,9 +10,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import ru.gooamoko.hibernate.example6.entity.WorkerEntity;
-import ru.gooamoko.hibernate.example6.model.CriteriaModel;
-import ru.gooamoko.hibernate.example6.model.Operation;
 import ru.gooamoko.hibernate.example6.repository.WorkersRepository;
+import ru.gooamoko.hibernate.specification.GenericSpecification;
+import ru.gooamoko.hibernate.specification.model.CriteriaModel;
+import ru.gooamoko.hibernate.specification.model.Operation;
 
 import java.time.LocalDateTime;
 import java.util.LinkedList;
@@ -65,7 +66,7 @@ public class Example6Test {
         int pageSize = 5; // Количество записей
         CriteriaModel model = new CriteriaModel("lastName", Operation.LIKE, "Ива");
         Pageable pageRequest = PageRequest.of(0, pageSize);
-        Page<WorkerEntity> entities = repository.findAll(new WorkerSpecification(model), pageRequest);
+        Page<WorkerEntity> entities = repository.findAll(new GenericSpecification<>(model, WorkerEntity.class), pageRequest);
         assertNotNull(entities);
         assertEquals(2, entities.stream().count()); // Будет только двое Ивановых
     }
@@ -76,7 +77,7 @@ public class Example6Test {
         int salary = 70;
         CriteriaModel model = new CriteriaModel("salary", Operation.GT, String.valueOf(salary));
         Pageable pageRequest = PageRequest.of(0, pageSize);
-        Page<WorkerEntity> entities = repository.findAll(new WorkerSpecification(model), pageRequest);
+        Page<WorkerEntity> entities = repository.findAll(new GenericSpecification<>(model, WorkerEntity.class), pageRequest);
         assertNotNull(entities);
         assertEquals(1, entities.stream().count()); // Будет только одна запись
         List<WorkerEntity> content = entities.getContent();
@@ -88,7 +89,7 @@ public class Example6Test {
         int pageSize = 5; // Количество записей
         CriteriaModel model = new CriteriaModel("birthDate", Operation.GT, "1986-01-01T00:00:00");
         Pageable pageRequest = PageRequest.of(0, pageSize);
-        Page<WorkerEntity> entities = repository.findAll(new WorkerSpecification(model), pageRequest);
+        Page<WorkerEntity> entities = repository.findAll(new GenericSpecification<>(model, WorkerEntity.class), pageRequest);
         assertNotNull(entities);
         assertEquals(1, entities.stream().count());
     }
@@ -99,7 +100,7 @@ public class Example6Test {
         String name = "Петр";
         CriteriaModel model = new CriteriaModel("firstName", Operation.EQ, name);
         Pageable pageRequest = PageRequest.of(0, pageSize);
-        Page<WorkerEntity> entities = repository.findAll(new WorkerSpecification(model), pageRequest);
+        Page<WorkerEntity> entities = repository.findAll(new GenericSpecification<>(model, WorkerEntity.class), pageRequest);
         assertNotNull(entities);
         assertEquals(1, entities.stream().count()); // Будет только одна запись
         List<WorkerEntity> content = entities.getContent();
@@ -111,7 +112,7 @@ public class Example6Test {
         int pageSize = 5; // Количество записей
         CriteriaModel model = new CriteriaModel("firstName", Operation.NULL, null);
         Pageable pageRequest = PageRequest.of(0, pageSize);
-        Page<WorkerEntity> entities = repository.findAll(new WorkerSpecification(model), pageRequest);
+        Page<WorkerEntity> entities = repository.findAll(new GenericSpecification<>(model, WorkerEntity.class), pageRequest);
         assertNotNull(entities);
         assertEquals(0, entities.stream().count());
     }

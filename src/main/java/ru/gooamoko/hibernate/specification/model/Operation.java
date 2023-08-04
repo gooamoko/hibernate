@@ -1,4 +1,4 @@
-package ru.gooamoko.hibernate.example6.model;
+package ru.gooamoko.hibernate.specification.model;
 
 public enum Operation {
     NULL,
