@@ -12,7 +12,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 		"ru.gooamoko.hibernate.example4.repository",
 		"ru.gooamoko.hibernate.example5.repository",
 		"ru.gooamoko.hibernate.example6.repository",
-		"ru.gooamoko.hibernate.example7.repository"
+		"ru.gooamoko.hibernate.example7.repository",
+		"ru.gooamoko.hibernate.example8.repository"
 })
 public class Application {
 
