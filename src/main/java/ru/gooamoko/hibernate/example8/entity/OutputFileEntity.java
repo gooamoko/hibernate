@@ -21,6 +21,7 @@ public class OutputFileEntity {
     @Column(name = "file_name", nullable = false)
     private String fileName;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(name = "status", nullable = false)
     private FileStatus status;
 
